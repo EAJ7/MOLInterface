@@ -1,7 +1,7 @@
 # ProgProject
 
 <h1 align="center">
-QuickInfos
+MolInterface
 </h1>
 
 <br>
