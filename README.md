@@ -1,7 +1,7 @@
 # ProgProject
 
 <h1 align="center">
-MolInterface
+MOLInterface
 </h1>
 
 <br>
