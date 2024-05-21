@@ -19,11 +19,11 @@ Repository for charing codes regarding the semester project
 Create a new environment, you may also give the environment a different name. 
 
 ```
-conda create -n MOLinfo python=3.10 
+conda create -n MOLterface python=3.10 
 ```
 
 ```
-conda activate MOLinfo
+conda activate MOLinterface
 ```
 
 If you need jupyter lab, install it 
