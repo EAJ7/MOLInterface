@@ -18,7 +18,7 @@ Repository for charing codes regarding the semester project
 Create a new environment, you may also give the environment a different name. 
 
 ```
-conda create -n MOLIterface python=3.10 
+conda create -n MOLInterface python=3.10 
 ```
 
 ```
