@@ -9,8 +9,6 @@ import pyperclip
 import threading
 import time
 import io
-import py3Dmol
-import numpy as np
 import pubchempy as pcp
 import webbrowser
 import rdkit
