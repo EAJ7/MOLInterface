@@ -66,8 +66,8 @@ To install the package, run
 ### Run tests and coverage
 
 ```
-(conda_env) $ pip install tox
-(conda_env) $ tox
+(MOLInterface) $ pip install tox
+(MOLInterface) $ tox
 ```
 
 ### Generate coverage badge
@@ -75,8 +75,8 @@ To install the package, run
 Works after running `tox`
 
 ```
-(conda_env) $ pip install "genbadge[coverage]"
-(conda_env) $ genbadge coverage -i coverage.xml
+(MOLInterface) $ pip install "genbadge[coverage]"
+(MOLInterface) $ genbadge coverage -i coverage.xml
 ```
 
 Generated with some inspiration from [cookiecutter-snekpack](https://github.com/cthoyt/cookiecutter-snekpack) and [copier-pylib](https://github.com/astrojuanlu/copier-pylib).
