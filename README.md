@@ -62,6 +62,21 @@ To install the package, run
 ```
 (MOLInterface) $ pip install -e ".[test,doc]"
 ```
+## Code usage and accessibilities
+
+After successfuly cloning the repository into your local machine, you should have access to the code via the jupyter notebook MOLInterface.ipynb or the python file MOLInterface.py.
+In addition, your newly created conda environment has access to the python package molinterface, which contains all of the functions used for running the code.
+You can import these functions into your python code by applying the following code lines:
+
+```
+from molinterface import THE_FUNCTION_THAT_YOU_WANT_TO_IMPORT
+```
+Alternatively, if you plan on using multiple functions contained in the package, you can directly import it into your code:
+
+```
+import molinterface as moli
+```
+Note that some functions of this code will take the smarts_patterns dictionnary as an argument. This dictionnary is defined as a global variable in the main() function.
 
 ### Run tests and coverage
 In ordrer to check that your code works properly, you can run the following commands on your terminal.
