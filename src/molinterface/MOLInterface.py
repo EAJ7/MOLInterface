@@ -9,8 +9,6 @@ import pyperclip
 import threading
 import time
 import io
-import py3Dmol
-import numpy as np
 import pubchempy as pcp
 import webbrowser
 import rdkit
@@ -24,7 +22,6 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 from mpl_toolkits.mplot3d import Axes3D
 from collections import defaultdict
-
 from io import BytesIO
 
 # SMARTS patterns to recognize chemical groups, better than smiles for multiple compnent groups like carboxylic acid, imide etc....
@@ -560,7 +557,7 @@ def highlight_chemical_groups(smiles, smarts_patterns):
 
     
     # Generate the image with highlighted chemical groups using higher resolution
-    drawer = rdMolDraw2D.MolDraw2DCairo(350, 300)
+    drawer = rdMolDraw2D.MolDraw2DCairo(400, 350)
     opts = drawer.drawOptions()
     opts.highlightColour = (1, 0, 0)
     highlight_colors = {atom_idx: (0.9, 0.5, 0.5) for atom_idx in highlight_atoms}
@@ -588,7 +585,7 @@ def update_gui_labels(molecule_data):
     label_molarmass.config(text=f"Molar Mass: {molecule_data['molar_mass']} g/mol")
 
     # Update the label with the number of stereogenic centers in the molecule
-    label_stereocenter.config(text=f"Stereogenic Centers: {molecule_data['num_stereo_centers']}")
+    label_stereocenter.config(text=f"Stereogenic Centers: {molecule_data['stereo_centers']}")
 
     # Update the label with the cheimcal groups in the molecule
     label_chemicalgroups.config(text=f"Chemical Groups: {molecule_data['chemical_groups']}")
@@ -608,7 +605,7 @@ def update_gui_labels(molecule_data):
 
     # You want to make the image in a canvas independent of ipython (jupyter)
     # create new canvas
-    d2d = Draw.MolDraw2DCairo(350,300)
+    d2d = Draw.MolDraw2DCairo(400,350)
 
     # get drawing options, and set options as you want
     dopts = d2d.drawOptions()
@@ -658,11 +655,11 @@ def toggle_image_display():
     else:
         # Display image2
         label_image2.update()
-        label_image2.place(x=300, y=370)
+        label_image2.place(x=300, y=350)
 
 
 
-# In[2]:
+# In[ ]:
 
 
 # Set initial last clipboard to be an empty string
@@ -729,7 +726,7 @@ label_rings.place(x=0,y=280)
 label_link = tk.Label(root, text="More infos: ", font=font_style, bg=background_color, fg="blue",cursor = "hand2", pady=5,wraplength=1000)
 # Place the label in the window
 label_link.pack()
-label_link.place(x=0,y=700)
+label_link.place(x=0,y=725)
 
 name_button_var = tk.IntVar()
 name_button = tk.Checkbutton(root, text="Check to highlight chemical groups", variable=name_button_var, command=toggle_image_display)
@@ -740,12 +737,12 @@ name_button.place(x=0,y=350)
 label_image1 = tk.Label(root)
 label_image1.config(borderwidth=2, relief="solid", bg=background_color)
 # Place the image label in the window
-label_image1.place(x=300,y=370)
+label_image1.place(x=300,y=350)
 
 label_image2 = tk.Label(root)
 label_image2.config(borderwidth=2, relief="solid", bg=background_color)
 # Place the image label in the window
-label_image2.place(x=300,y=370)
+label_image2.place(x=300,y=350)
 
 
 # Start a daemon thread that runs the clipboard monitoring function
