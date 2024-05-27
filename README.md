@@ -32,7 +32,7 @@ conda activate MOLInterface
 If you need jupyter lab, install it 
 
 ```
-(ch200) $ pip install jupyterlab
+(MOLInterface) $ pip install jupyterlab
 ```
 Finally, create a clone of the repository o your local machine in order to have access to the python package
 
