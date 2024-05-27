@@ -34,7 +34,7 @@ If you need jupyter lab, install it
 ```
 (MOLInterface) $ pip install jupyterlab
 ```
-Finally, create a clone of the repository o your local machine in order to have access to the python package
+Finally, create a clone of the repository of your local machine in order to have access to the python package
 
 ```
 git clone https://github.com/EAJ7/MOLInterface
