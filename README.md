@@ -10,8 +10,12 @@ Repository for charing codes regarding the semester project
 
 ## 👨‍🔬 Usage
 
-> TODO show in a very small amount of space the **MOST** useful thing your package can do.
-> Make it as short as possible! You have an entire set of docs for later.
+> This is a program that will take as an input the current clipboard of the user, as long as it is a molecule's name.
+> It will give a lot of useful infos about the molecule, like its IUPAC name, SMILES code, atomic formula, the molar mass, and will draw the molecule in 2D in a tkinter window.
+> If stereogenic centers are present in the molecule, they will be given with their position and configuration (R,S) and will be displayed on the molecule.
+> The chemical groups present in the molecule will also be given, as well as the rings found with their aromaticity.
+> A button is also available in order to highlight the chemical groups of the molecule
+> A link leading to the PUBchem page of the selected molecule is also available at the bottom of the window.
 
 ## 👇👾 Installation
 
