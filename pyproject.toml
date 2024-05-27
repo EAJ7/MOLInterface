@@ -10,7 +10,7 @@ license = {file = "LICENSE"}
 description = "Interface that gives useful infos, stereochemistry and chemical groups from a compound's name in the clipboard"
 dependencies = [
      "rdkit",
-     "pyperclip"
+     "pyperclip",
      "pubchempy"
 ]
 authors = [
