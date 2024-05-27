@@ -64,7 +64,7 @@ To install the package, run
 ```
 
 ### Run tests and coverage
-
+In ordrer to check that your code works properly, you can run the following commands on your terminal.
 ```
 (MOLInterface) $ pip install tox
 (MOLInterface) $ tox
