@@ -47,9 +47,8 @@ Initialize Git (only for the first time).
 Note: You should have create an empty repository on your github.
 
 ```
-git init
-git add * 
-git add .*
+git init 
+git add .
 git commit -m "Initial commit" 
 git branch -M main
 git remote add origin git@github.com:(your_github_profile)/(YOUR_REPOSITORY).git 
@@ -61,7 +60,7 @@ Then add and commit changes as usual.
 To install the package, run
 
 ```
-(ch200) $ pip install -e ".[test,doc]"
+(MOLInterface) $ pip install -e ".[test,doc]"
 ```
 
 ### Run tests and coverage
