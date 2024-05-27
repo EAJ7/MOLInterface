@@ -9,10 +9,10 @@ requires-python = ">=3.10"
 license = {file = "LICENSE"}
 description = "Interface that gives useful infos, stereochemistry and chemical groups from a compound's name in the clipboard"
 dependencies = [
-    # "rdkit",
+     "rdkit",
 ]
 authors = [
-    {name = "Elie Abou Jaoude", email = "elie.aboujaoude@epfl.ch"}
+    {name = "Elie Abou Jaoude", email = "elie.aboujaoude@epfl.ch"},{name = "Cedric Baerlocher Aguilar", email = "cedric.baerlocheraguilar@epfl.ch"},{name = "Elie Khoury Hanna", email = "elie.khouryhanna@epfl.ch"}
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
