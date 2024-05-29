@@ -756,7 +756,7 @@ def main():
     threading.Thread(target=clipboard_monitor, daemon=True).start()
     root.mainloop()
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
 
 
