@@ -182,21 +182,21 @@ def find_chemical_groups(smiles, smarts_patterns):
     Returns:
         dict: A dictionary of identified chemical groups and their matches.
     """
-        mol = Chem.MolFromSmiles(smiles)
-        if mol is None:
-            raise ValueError(f"Invalid SMILES string: {smiles}")
+    mol = Chem.MolFromSmiles(smiles)
+    if mol is None:
+        raise ValueError(f"Invalid SMILES string: {smiles}")
         
-        chemical_groups = {}
-        for smarts, group_name in smarts_patterns.items():
-            pattern = Chem.MolFromSmarts(smarts)
-            if pattern is None:
-                raise ValueError(f"Invalid SMARTS pattern: {smarts}")
+    chemical_groups = {}
+    for smarts, group_name in smarts_patterns.items():
+        pattern = Chem.MolFromSmarts(smarts)
+        if pattern is None:
+            raise ValueError(f"Invalid SMARTS pattern: {smarts}")
             
-            matches = mol.GetSubstructMatches(pattern)
-            if matches:
-                chemical_groups[group_name] = matches
+        matches = mol.GetSubstructMatches(pattern)
+        if matches:
+            chemical_groups[group_name] = matches
         
-        return chemical_groups
+    return chemical_groups
 
 
 def get_compound_info(molecule_name, smarts_patterns):
@@ -290,7 +290,7 @@ def display_image1_in_tkinter(img_data, root):
 
 
 def display_image2_in_tkinter (image_data,root):
-        """
+    """
     Configurates the display of the image where stereogenic centers are highlighted in the Tkinter window.
 
     Args:
