@@ -24,8 +24,18 @@ from mpl_toolkits.mplot3d import Axes3D
 from collections import defaultdict
 from io import BytesIO
 
-'''Search for chemical groups in the molecule using the smiles and the smarts dictionnary'''
+
 def find_smiles_patterns(smiles, smarts_patterns):
+    """
+    Search for chemical groups in the molecule using the SMILES and the SMARTS dictionary.
+
+    Args:
+        smiles (str): The SMILES string representing the molecule.
+        smarts_patterns (dict): Dictionary of SMARTS patterns to identify chemical groups.
+
+    Returns:
+        list: A list of identified chemical groups.
+    """
     mol = Chem.MolFromSmiles(smiles)
     if mol is None:
         return "Invalid SMILES string. Unable to parse molecule."
@@ -58,8 +68,17 @@ def find_smiles_patterns(smiles, smarts_patterns):
     # Return the list of identified chemical groups
     return chemical_groups
 
-'''Search for rings in the molecule and defining aromaticity and fusion of rings using the smiles'''
+
 def find_rings(smiles):
+    """
+    Search for rings in the molecule and define aromaticity and fusion of rings using the SMILES.
+
+    Args:
+        smiles (str): The SMILES string representing the molecule.
+
+    Returns:
+        dict: A dictionary containing categorized ring information.
+    """ 
     mol = Chem.MolFromSmiles(smiles)
     if mol is None:
         return "Invalid SMILES string. Unable to parse molecule."
@@ -75,8 +94,11 @@ def find_rings(smiles):
     ring_info = mol.GetRingInfo()
     all_ring_atoms = ring_info.AtomRings()
 
-    '''Function to check if a ring is aromatic'''
+    
     def is_aromatic(ring_atoms):
+        """
+        Function to check if a ring is aromatic
+        """
         return all(mol.GetAtomWithIdx(idx).GetIsAromatic() for idx in ring_atoms)
 
     # Find and categorize rings
@@ -118,8 +140,16 @@ def find_rings(smiles):
 
     return results
 
-'''Changes how the rings are diplayed while printing'''
 def format_rings(rings_dict):
+    """
+    Formats the ring information for printing.
+
+    Args:
+        rings_dict (dict): Dictionary containing categorized ring information.
+
+    Returns:
+        str: A formatted string representation of the ring information.
+    """
     formatted_rings = ""
     for category, rings in rings_dict.items():
         if rings:
@@ -132,10 +162,26 @@ def format_rings(rings_dict):
 
 
 def open_url(url):
+    """
+    Opens the given URL in a web browser.
+
+    Args:
+        url (str): The URL to open.
+    """
     webbrowser.open_new(url)
 
-'''Finds the chemical groups for printing'''
+
 def find_chemical_groups(smiles, smarts_patterns):
+    """
+    Finds the chemical groups in the molecule using the SMILES and SMARTS dictionary.
+
+    Args:
+        smiles (str): The SMILES string representing the molecule.
+        smarts_patterns (dict): Dictionary of SMARTS patterns to identify chemical groups.
+
+    Returns:
+        dict: A dictionary of identified chemical groups and their matches.
+    """
         mol = Chem.MolFromSmiles(smiles)
         if mol is None:
             raise ValueError(f"Invalid SMILES string: {smiles}")
@@ -152,8 +198,19 @@ def find_chemical_groups(smiles, smarts_patterns):
         
         return chemical_groups
 
-'''Gets useful infos from the name of the molecule, including the stereo centers'''
+
 def get_compound_info(molecule_name, smarts_patterns):
+    """
+    Gets useful information from the name of the molecule, including the stereo centers.
+
+    Args:
+        molecule_name (str): The name of the molecule.
+        smarts_patterns (dict): Dictionary of SMARTS patterns to identify chemical groups.
+
+    Returns:
+        dict: A dictionary of molecule information, including IUPAC name, SMILES code, molar mass, atomic formula, 
+              planar molecule, number of stereo centers, stereo centers, chemical groups, and rings found.
+    """
     compounds = pcp.get_compounds(molecule_name, 'name') # Get compounds based on the molecule name
 
     if compounds:
@@ -196,8 +253,15 @@ def get_compound_info(molecule_name, smarts_patterns):
         return{"error": "Compound not found"}
 
 
-'''Configurate the display of the image where chemical groups are highlighted in the tkinter window'''
+
 def display_image1_in_tkinter(img_data, root):
+    """
+    Configurates the display of the image where chemical groups are highlighted in the Tkinter window.
+
+    Args:
+        img_data (bytes): The image data to display.
+        root (Tk): The Tkinter root window.
+    """
     global label_image1
     # Check and print the type of the image data
 
@@ -224,8 +288,15 @@ def display_image1_in_tkinter(img_data, root):
         print("Error opening image:", e)
             
 
-'''Configurate the display of the image where stereogenic centers in the tkinter window'''
+
 def display_image2_in_tkinter (image_data,root):
+        """
+    Configurates the display of the image where stereogenic centers are highlighted in the Tkinter window.
+
+    Args:
+        image_data (Image): The image data to display.
+        root (Tk): The Tkinter root window.
+    """
     global label_image2
     tk_image = ImageTk.PhotoImage(image_data)
     
@@ -244,8 +315,18 @@ def display_image2_in_tkinter (image_data,root):
         label_image2.place(x=300,y=300)
     
 
-'''Generation of image1 with highlighted chemical groups'''
+
 def highlight_chemical_groups(smiles, smarts_patterns):
+    """
+    Generates an image with highlighted chemical groups.
+
+    Args:
+        smiles (str): The SMILES string representing the molecule.
+        smarts_patterns (dict): Dictionary of SMARTS patterns to identify chemical groups.
+
+    Returns:
+        bytes: The image data with highlighted chemical groups.
+    """
     # Function to find chemical groups in the molecule
     
 
@@ -281,8 +362,13 @@ def highlight_chemical_groups(smiles, smarts_patterns):
     return highlighted_img
 
 
-'''Function to update the GUI labels with new molecular information'''
 def update_gui_labels(molecule_data):
+    """
+    Updates the GUI labels with new molecular information.
+
+    Args:
+        molecule_data (dict): The molecule data to update the GUI labels with.
+    """
     
     # Update the label with the IUPAC name of the molecule
     label_name.config(text=f"IUPAC Name: {molecule_data['iupac_name']}")
@@ -331,8 +417,12 @@ def update_gui_labels(molecule_data):
     bio = BytesIO(d2d.GetDrawingText())
     display_image2_in_tkinter(Image.open(bio), root)
 
-'''Gets the molecule name from the clipboard'''    
+   
 def update_molecule_info():
+    """
+    Gets the molecule name from the clipboard and updates the molecule information if the clipboard content changes.
+    """
+    
     global molecule_data 
     # Retrieve the current content of the clipboard
     current_clipboard = pyperclip.paste()
@@ -349,8 +439,10 @@ def update_molecule_info():
             root.after(0, update_gui_labels, molecule_data)
 
 
-'''Function to continuously monitor clipboard for changes and update GUI'''
 def clipboard_monitor():
+    """
+    Continuously monitors the clipboard for changes and updates the GUI accordingly.
+    """
     # Infinite loop to keep checking the clipboard
     while True:  
         # Call function to check and update GUI if clipboard has changed
@@ -358,8 +450,10 @@ def clipboard_monitor():
         # Wait for 1 second between checks to avoid high CPU usage
         time.sleep(1)  
         
-'''Function related to the displaying of image1 or image2'''
 def toggle_image_display():
+    """
+    Toggles the display of image1 or image2 based on the state of the checkbox.
+    """
     if name_button_var.get() == 1:
         # Hide image2
         label_image2.place_forget()
@@ -375,7 +469,9 @@ def toggle_image_display():
 
 
 def main():
-
+    """
+    Main function to set up and run the Tkinter application.
+    """
     global smarts_patterns, root, label_name, label_smiles, label_formula, label_molarmass, label_stereocenter, label_chemicalgroups, label_rings, label_link, name_button_var, name_button, label_image1, label_image2
 
     # SMARTS patterns to recognize chemical groups, better than smiles for multiple compnent groups like carboxylic acid, imide etc....
