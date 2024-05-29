@@ -57,7 +57,7 @@ git push -u origin main
 
 Then add and commit changes as usual. 
 
-To install the package, run
+To install the package, go to your cloned repository's directory and run
 
 ```
 (MOLInterface) $ pip install -e ".[test,doc]"
